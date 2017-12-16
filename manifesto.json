@@ -1,0 +1,32 @@
+{
+    "details": {
+        "title": "A bash template developed cure cancer.",
+        "syntax": "smash.sh [argument] [option]",
+        "author": "Brian Faust <hello@brianfaust.me>",
+        "version": "1.0.0"
+    },
+    "commands": [{
+        "abbreviation": "-i",
+        "command": "install",
+        "description": "install the script",
+        "method": "command_install"
+    }, {
+        "abbreviation": "-u",
+        "command": "update",
+        "description": "update the script",
+        "method": "command_update",
+        "required": false
+    }, {
+        "abbreviation": "-h",
+        "command": "help",
+        "description": "output usage information",
+        "method": "read_the_fucking_manual",
+        "required": false
+    }, {
+        "abbreviation": "-v",
+        "command": "version",
+        "description": "output the version number",
+        "method": "command_version",
+        "required": false
+    }]
+}
