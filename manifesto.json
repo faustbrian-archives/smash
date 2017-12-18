@@ -42,6 +42,10 @@
         "description": "Update the application",
         "method": "app_update"
     }, {
+        "command": "alias",
+        "description": "Install the application alias",
+        "method": "app_alias"
+    }, {
         "abbreviation": "-v",
         "command": "version",
         "description": "Output the version number",

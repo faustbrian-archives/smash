@@ -46,6 +46,13 @@ app_update()
     fi
 }
 
+app_alias()
+{
+    heading "Installing alias..."
+    echo "alias ${__base}='bash ${__file}'" | tee -a "${HOME}/.bashrc"
+    success "Run [source ${HOME}/.bashrc] to complete the installation."
+}
+
 app_version()
 {
     local version="$(git rev-parse HEAD)"
