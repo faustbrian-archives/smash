@@ -8,17 +8,20 @@ set -o noclobber
 
 shopt -s extglob
 
-readonly EXEC_APP=$(basename "$0")
-readonly EXEC_DIR=$(dirname "$0")
-readonly MANIFESTO="${EXEC_DIR}/manifesto.json"
+readonly __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+readonly __base="$(basename ${__file} .sh)"
+readonly __root="$(cd "$(dirname "${__dir}")" && pwd)"
+readonly __manifesto="${__dir}/manifesto.json"
+readonly __daemon="${__dir}/daemon.json"
 
 readonly -a DEPENDENCIES_PROGRAMS=('jq')
 readonly -a DEPENDENCIES_NODEJS=('pm2')
 # readonly -a DEPENDENCIES_FILES=()
 # readonly -a DEPENDENCIES_PROCESSES=()
 
-source "${EXEC_DIR}/lib/bootstrap.sh"
-source "${EXEC_DIR}/app/bootstrap.sh"
+source "${__dir}/bootstrap/lib.sh"
+source "${__dir}/bootstrap/app.sh"
 
 main()
 {

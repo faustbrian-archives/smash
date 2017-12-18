@@ -2,18 +2,18 @@
 
 check_program_dependencies()
 {
-    local -a DEPENDENCIES=$1
+    local -a dependencies="${1}"
 
-    for dep in "${DEPENDENCIES[@]}"; do
-        if [[ -z $(command -v "$dep") ]]; then
-            read -p "$i is not installed. Do you want to install it? [y/N] :" choice
+    for dependency in ${dependencies[@]}; do
+        if [[ -z $(command -v "${dependency}") ]]; then
+            read -p "[${dependency}] is not installed. Do you want to install it? [y/N] :" choice
 
-            if [[ $choice =~ ^(yes|y) ]]; then
-                success "Installing ${dep}..."
-                sudo apt-get install "$dep" -y
+            if [[ "$choice" =~ ^(yes|y) ]]; then
+                success "Installing ${dependency}..."
+                sudo apt-get install "${dependency}" -y
                 success 'Installation OK!'
             else
-                abort 1 "Please ensure that [${dep}] is installed and try again."
+                abort 1 "Please ensure that [${dependency}] is installed and try again."
             fi
         fi
     done
@@ -21,18 +21,18 @@ check_program_dependencies()
 
 check_nodejs_dependencies()
 {
-    local -a DEPENDENCIES=$1
+    local -a dependencies="${1}"
 
-    for dep in "${DEPENDENCIES[@]}"; do
-        if [[ -z $(command -v "$dep") ]]; then
-            read -p "$i is not installed. Do you want to install it? [y/N] :" choice
+    for dependency in ${dependencies[@]}; do
+        if [[ -z $(command -v "${dependency}") ]]; then
+            read -p "[${dependency}] is not installed. Do you want to install it? [y/N] :" choice
 
-            if [[ $choice =~ ^(yes|y) ]]; then
-                success "Installing ${dep}..."
-                npm install -g "$dep"
+            if [[ "$choice" =~ ^(yes|y) ]]; then
+                success "Installing ${dependency}..."
+                npm install -g "${dependency}"
                 success 'Installation OK!'
             else
-                abort 1 "Please ensure that [${dep}] is installed and try again."
+                abort 1 "Please ensure that [${dependency}] is installed and try again."
             fi
         fi
     done
@@ -40,29 +40,29 @@ check_nodejs_dependencies()
 
 check_file_dependencies()
 {
-    local -a DEPENDENCIES=$1
+    local -a dependencies="${1}"
 
-    for dep in "${DEPENDENCIES[@]}"; do
-        if [[ ! -f "$dep" ]]; then
-            abort 1 "Please ensure that [${dep}] exists and try again."
+    for dependency in ${dependencies[@]}; do
+        if [[ ! -f "${dependency}" ]]; then
+            abort 1 "Please ensure that [${dependency}] exists and try again."
         fi
     done
 }
 
 check_process_dependencies()
 {
-    local -a DEPENDENCIES=$1
+    local -a dependencies="${1}"
 
-    for dep in "${DEPENDENCIES[@]}"; do
-        if [[ ! $(pgrep -x "$dep") ]]; then
-            read -p "[${dep}] is not running. Do you want to start it? [y/N] :" choice
+    for dependency in ${dependencies[@]}; do
+        if [[ ! $(pgrep -x "${dependency}") ]]; then
+            read -p "[${dependency}] is not running. Do you want to start it? [y/N] :" choice
 
-            if [[ $choice =~ ^(yes|y) ]]; then
-                success "Starting ${i}..."
-                sudo service "$i" start
+            if [[ "$choice" =~ ^(yes|y) ]]; then
+                success "Starting ${dependency}..."
+                sudo service "${dependency}" start
                 success 'Start OK!'
             else
-                abort 1 "Please ensure that [${dep}] is running and try again."
+                abort 1 "Please ensure that [${dependency}] is running and try again."
             fi
         fi
     done
