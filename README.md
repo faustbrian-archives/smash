@@ -1,4 +1,4 @@
-# Smash - A bash template developed cure cancer.
+# Smash - A bash template developed to cure cancer.
 
 ## Installation
 
