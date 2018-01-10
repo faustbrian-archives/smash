@@ -18,9 +18,9 @@ check_program_dependencies()
 
             if [[ "$choice" =~ ^(yes|y) ]]; then
                 success "Installing ${dependency}..."
-                if [ $machine = Linux ]; then
+                if [[ "$machine" == "Linux" ]]; then
                     sudo apt-get install "${dependency}" -y
-                elif [ $machine = Mac ]; then
+                elif [[ "$machine" == "Mac" ]]; then
                     brew install "${dependency}" -y
                 else
                     abort 1 'Unsupported platform.'
