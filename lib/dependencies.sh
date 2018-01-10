@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+case "$(uname -s)" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
 check_program_dependencies()
 {
     local -a dependencies="${1}"
@@ -10,7 +18,13 @@ check_program_dependencies()
 
             if [[ "$choice" =~ ^(yes|y) ]]; then
                 success "Installing ${dependency}..."
-                sudo apt-get install "${dependency}" -y
+                if [[ "$machine" == "Linux" ]]; then
+                    sudo apt-get install "${dependency}" -y
+                elif [[ "$machine" == "Mac" ]]; then
+                    brew install "${dependency}" -y
+                else
+                    abort 1 'Unsupported platform.'
+                fi
                 success 'Installation OK!'
             else
                 abort 1 "Please ensure that [${dependency}] is installed and try again."
