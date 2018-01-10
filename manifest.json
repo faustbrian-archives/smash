@@ -1,6 +1,6 @@
 {
     "details": {
-        "title": "A bash template developed cure cancer.",
+        "title": "A bash template developed to cure cancer.",
         "syntax": "smash.sh [argument] [-option]",
         "author": "Brian Faust <hello@brianfaust.me>",
         "version": "1.0.0"
