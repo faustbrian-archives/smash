@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+source "${__dir}/lib/alerts.sh"
+source "${__dir}/lib/errors.sh"
+
 if [[ "$BASH_VERSINFO" < 4 ]]; then
     abort 1 'You need at least bash-4.0 to run this script.'
 fi
@@ -12,8 +15,6 @@ if [[ -z "${HOME}" ]]; then
     abort 1 "\$HOME is not defined. Please set it first."
 fi
 
-source "${__dir}/lib/alerts.sh"
-source "${__dir}/lib/errors.sh"
 source "${__dir}/lib/rtfm.sh"
 source "${__dir}/lib/dependencies.sh"
 source "${__dir}/lib/manifest.sh"
