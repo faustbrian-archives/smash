@@ -2,7 +2,7 @@
     "details": {
         "title": "A bash template developed to cure cancer.",
         "syntax": "smash.sh [argument] [-option]",
-        "author": "Brian Faust <hello@brianfaust.me>",
+        "author": "Brian Faust <hello@basecode.sh>",
         "version": "1.0.0"
     },
     "commands": [{
